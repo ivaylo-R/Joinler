@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Joinler", "src\Joinler.csproj", "{BDC5B7E1-58A2-4ADE-9946-D7EF8282E9FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Joinler", "Joinler.csproj", "{5F3A25C6-3A70-4FFC-A7F1-3D0EE2C85E2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BDC5B7E1-58A2-4ADE-9946-D7EF8282E9FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BDC5B7E1-58A2-4ADE-9946-D7EF8282E9FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BDC5B7E1-58A2-4ADE-9946-D7EF8282E9FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BDC5B7E1-58A2-4ADE-9946-D7EF8282E9FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F3A25C6-3A70-4FFC-A7F1-3D0EE2C85E2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F3A25C6-3A70-4FFC-A7F1-3D0EE2C85E2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F3A25C6-3A70-4FFC-A7F1-3D0EE2C85E2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F3A25C6-3A70-4FFC-A7F1-3D0EE2C85E2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C602353A-94E8-4B5B-9145-A02C80C57689}
+		SolutionGuid = {7F1608CC-FFDA-4AD2-B60F-E60B8E54B7C2}
 	EndGlobalSection
 EndGlobal
