@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Joinler.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<UserProfile>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

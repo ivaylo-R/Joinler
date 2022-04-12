@@ -2,10 +2,9 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
+using Joinler.Data.Models;
+using Joinler.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -14,12 +13,12 @@ namespace Joinler.Areas.Identity.Pages.Account.Manage
 {
     public class IndexModel : PageModel
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly UserManager<UserProfile> userManager;
+        private readonly SignInManager<UserProfile> signInManager;
 
         public IndexModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+            UserManager<UserProfile> userManager,
+            SignInManager<UserProfile> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
@@ -35,12 +34,21 @@ namespace Joinler.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            [Display(Name = "Username")]
+            public string Username { get; set; }
+
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
         }
 
-        private async Task LoadAsync(IdentityUser user)
+        private async Task LoadAsync(UserProfile user)
         {
             var userName = await userManager.GetUserNameAsync(user);
             var phoneNumber = await userManager.GetPhoneNumberAsync(user);
@@ -49,6 +57,8 @@ namespace Joinler.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
+                FirstName= user.FirstName,
+                LastName=user.LastName,
                 PhoneNumber = phoneNumber
             };
         }
@@ -58,7 +68,7 @@ namespace Joinler.Areas.Identity.Pages.Account.Manage
             var user = await userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
+                return NotFound($"Unable to load user with ID '{this.User.Id()}'.");
             }
 
             await LoadAsync(user);
@@ -70,7 +80,7 @@ namespace Joinler.Areas.Identity.Pages.Account.Manage
             var user = await userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
+                return NotFound($"Unable to load user with ID '{this.User.Id()}'.");
             }
 
             if (!ModelState.IsValid)
@@ -88,6 +98,20 @@ namespace Joinler.Areas.Identity.Pages.Account.Manage
                     StatusMessage = "Unexpected error when trying to set phone number.";
                     return RedirectToPage();
                 }
+            }
+
+            var firstName = user.FirstName;
+            var lastName = user.LastName;
+
+            if (Input.FirstName != firstName)
+            {
+                user.FirstName = Input.FirstName;
+                await userManager.UpdateAsync(user);
+            }
+            if (Input.LastName != lastName)
+            {
+                user.LastName = Input.LastName;
+                await userManager.UpdateAsync(user);
             }
 
             await signInManager.RefreshSignInAsync(user);

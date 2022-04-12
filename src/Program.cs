@@ -1,6 +1,5 @@
 using Joinler.Data;
 using Joinler.Data.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
