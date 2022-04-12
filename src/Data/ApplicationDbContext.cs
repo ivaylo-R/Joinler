@@ -9,7 +9,7 @@ namespace Joinler.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
-        {
+         {
         }
 
         public DbSet<UserProfile> UserProfiles { get; set; }
